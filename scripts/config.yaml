@@ -1,6 +1,7 @@
 INPUT_DIR_KMERS: '../data/rodriguez_matrinez_elife_10bp_data/'
 INTERIM_DIR: 'interim'
 OUTPUT_DIR: 'output'
+LOG_DIR: 'logs'
 
 KMER_NAMES: [
     'ATF2_20N_lib5', 'ATF3_20N_lib5', 'ATF3_CEBPA_20N_lib6', 'ATF3_CEBPG_20N_lib1',
