@@ -1,0 +1,19 @@
+configfile: 'config.yaml'
+
+import pathlib
+
+DIR_KMER_INPUT = pathlib.Path(config['INPUT_DIR_KMERS'])
+DIR_INTERIM = pathlib.Path(config['INTERIM_DIR'])
+DIR_OUTPUT = pathlib.Path(config['OUTPUT_DIR'])
+
+KMERS = config['KMER_NAMES']
+
+
+include: 'preprocessing/preprocessing.smk'
+
+TARGETS = []
+TARGETS.append(DIR_OUTPUT / 'kmer_z_score_dataframe.h5')
+TARGETS.extend([DIR_OUTPUT / 'fasta' / f'{kmer_name}.best_sequences.fa.gz' for kmer_name in KMERS])
+
+rule all:
+    input: TARGETS
