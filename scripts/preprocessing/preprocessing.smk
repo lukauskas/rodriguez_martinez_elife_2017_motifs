@@ -11,7 +11,6 @@ rule parse_kmers:
     run:
         import pandas as pd
 
-        col = params.col_to_use
         df = pd.read_csv(input.kmers_txt, sep='\t', header=None,
                          names=['kmer', 'kmer_rc', 'z_score', 'z_score_rank'])
 
@@ -48,31 +47,3 @@ rule combine_kmers_to_dataframe:
                 ans.index.name = 'kmer'
 
                 store.put(col, ans, format='table')
-
-rule top_sequences_as_fasta:
-    input:
-        kmer_data = DIR_INTERIM / '{kmer_name}.h5'
-    output:
-        fa = temp(DIR_INTERIM / 'fasta' / '{kmer_name}.best_sequences.fa')
-    params:
-        column_to_use='z_score',
-        n = 1000
-    run:
-        import pandas as pd
-        n = int(params.n)
-        series = pd.read_hdf(input.kmer_data, column_to_use)
-
-        series = series.nlargest(n)
-        series = series.sort_values(ascending=False)
-
-        with open(output.fa, 'w') as file_:
-            for i, kmer in enumerate(series.index, start=1):
-                file_.write(f'>{i}\n{kmer}\n')
-
-rule top_sequences_as_fasta_gz:
-    input:
-        fa=rules.top_sequences_as_fasta.output.fa
-    output:
-        fa=DIR_OUTPUT / 'fasta' / '{kmer_name}.best_sequences.fa.gz'
-    shell:
-        'cat {input.fa} | gzip > {output.fa}'

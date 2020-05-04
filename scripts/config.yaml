@@ -32,3 +32,6 @@ KMER_NAMES: [
     'NFE2_20N_lib4', 'NFE2_MAFG_20N_lib4', 'NFE2rep2_20N_lib3', 'NFIL3_20N_lib2',
     'NFIL3rep2R01_335'
 ]
+
+# How many best kmers to use to make MEME motif
+N_KMERS_FOR_MEME: 1000
