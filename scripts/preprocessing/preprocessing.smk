@@ -20,7 +20,7 @@ rule parse_kmers:
         with pd.HDFStore(output.kmers_filtered_txt, 'w') as store:
             for col in ['z_score', 'z_score_rank']:
                 series = df[col]
-                df.name = wildcards.kmer_name
+                series.name = wildcards.kmer_name
                 store[col] = series
 
 

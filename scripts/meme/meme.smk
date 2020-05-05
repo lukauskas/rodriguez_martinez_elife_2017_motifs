@@ -1,3 +1,5 @@
+# Expects some global variables, import this from main snakefile
+
 rule top_sequences_as_fasta:
     input:
         kmer_data = DIR_INTERIM / '{kmer_name}.h5'
