@@ -11,8 +11,7 @@ KMERS = config['KMER_NAMES']
 
 
 include: 'preprocessing/preprocessing.smk'
-include: 'meme/meme.smk'
-include: 'tensorflow/projector.smk'
+include: 'genomic/sequences.smk'
 
 TARGETS = []
 TARGETS.append(DIR_OUTPUT / 'kmer_z_score_dataframe.h5')
