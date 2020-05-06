@@ -12,14 +12,14 @@ KMERS = config['KMER_NAMES']
 
 include: 'preprocessing/preprocessing.smk'
 include: 'genomic/sequences.smk'
+include: 'genomic/kmer_bigwig.smk'
 
 TARGETS = []
 TARGETS.append(DIR_OUTPUT / 'kmer_z_score_dataframe.h5')
 TARGETS.extend([DIR_OUTPUT / 'fasta' / f'{kmer_name}.best_sequences.fa.gz' for kmer_name in KMERS])
-TARGETS.extend([DIR_OUTPUT / 'meme' / kmer_name for kmer_name in KMERS])
 
-TARGETS.append(DIR_OUTPUT / 'tensorflow_projector' / 'metadata.tsv')
-TARGETS.append(DIR_OUTPUT / 'tensorflow_projector' / 'vectors.tsv')
+TARGETS.append(DIR_OUTPUT / 'bw' / 'hg38' / 'ATF4_CEBPG_20N_lib1.ranks.bw')
+TARGETS.append(DIR_OUTPUT / 'bw' / 'hg38' / 'ATF4_CEBPA_20N_lib1.ranks.bw')
 
 rule all:
     input: TARGETS
