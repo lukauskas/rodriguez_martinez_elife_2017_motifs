@@ -18,8 +18,7 @@ TARGETS = []
 TARGETS.append(DIR_OUTPUT / 'kmer_z_score_dataframe.h5')
 TARGETS.extend([DIR_OUTPUT / 'fasta' / f'{kmer_name}.best_sequences.fa.gz' for kmer_name in KMERS])
 
-TARGETS.append(DIR_OUTPUT / 'bw' / 'hg38' / 'ATF4_CEBPG_20N_lib1.ranks.bw')
-TARGETS.append(DIR_OUTPUT / 'bw' / 'hg38' / 'ATF4_CEBPA_20N_lib1.ranks.bw')
+TARGETS.extend([DIR_OUTPUT / 'bw' / 'hg38' / '{kmer_name}.ranks.bw' for kmer_name in KMERS])
 
 rule all:
     input: TARGETS
