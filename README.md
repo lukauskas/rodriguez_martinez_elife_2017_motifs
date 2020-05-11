@@ -3,13 +3,16 @@
 Some further post-processing of data from Rodriguez-Martinez et al. eLife 2017;6:e19272
 
 What these scripts do, briefly, is to parse the kmer tracks from their supplementary data,
-and generate a bigwig for their occurence.
+and create a bed file of occurences of top 50 motifs.
 
-The resulting bigwigs show signal values of the level 0-1000 where the socres
+Alternatively, if the appropriate line is uncommented, the
+script can generate a bigwig of top 200 motifs:
+
+The resulting bigwigs show signal values of the level 0-200 where the scores
 indicate the kmer ranks in the following fashion:
 
-1. 0 - all kmers up to 1000 best kmers
-2. 1-1000 top 1000 kmers ranked in increasing score
+1. 0 - all kmers up to 200 best kmers
+2. 1-200 top 200 kmers ranked in increasing score
 
 ## Usage
 

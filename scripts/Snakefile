@@ -12,13 +12,16 @@ KMERS = config['KMER_NAMES']
 
 include: 'preprocessing/preprocessing.smk'
 include: 'genomic/sequences.smk'
-include: 'genomic/kmer_bigwig.smk'
+include: 'genomic/kmer_genomic_files.smk'
 
 TARGETS = []
 TARGETS.append(DIR_OUTPUT / 'kmer_z_score_dataframe.h5')
 TARGETS.extend([DIR_OUTPUT / 'fasta' / f'{kmer_name}.best_sequences.fa.gz' for kmer_name in KMERS])
 
-TARGETS.extend([DIR_OUTPUT / 'bw' / 'hg38' / f'{kmer_name}.ranks.bw' for kmer_name in KMERS])
+# Uncomment this if you need the bigwigs
+# TARGETS.extend([DIR_OUTPUT / 'bw' / 'hg38' / f'{kmer_name}.ranks.bw' for kmer_name in KMERS])
+
+TARGETS.extend([DIR_OUTPUT / 'bed' / 'hg38' / f'{kmer_name}.kmers.bed.gz' for kmer_name in KMERS])
 
 rule all:
     input: TARGETS

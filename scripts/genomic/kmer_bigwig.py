@@ -15,10 +15,7 @@ def read_score_lookup_array(kmer_score_h5, motif_id, score_column, nlargest):
     """
     kmer_scores = pd.read_hdf(kmer_score_h5, score_column)[motif_id]
     kmer_scores = kmer_scores.nlargest(nlargest)
-
-    kmer_scores = kmer_scores.rank(pct=True)
-    # Change scale
-    kmer_scores = kmer_scores * 1000
+    kmer_scores = kmer_scores.rank(method='first')
 
     kmer_score_lookup = create_lookup_array(
         kmer_scores.index.astype(bytes),
@@ -55,7 +52,6 @@ def make_bigwig(genomic_fasta,
             values = consume_sequence(kmer_score_lookup, sequence)
             # Cast to int to get more repeating values
             # values = np.asarray(values, dtype=int)
-
 
             pos = 0
             bw.addEntries(chromosome,
