@@ -14,7 +14,7 @@ coverage==5.1
 cvxpy==1.0.31
 cycler==0.10.0
 Cython==0.29.17
-dask==2.15.0
+dask==2021.10.0
 datrie==0.8.2
 decorator==4.4.2
 defusedxml==0.6.0
